@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yang.module_picture">
+
+    <application>
+        <activity
+            android:name="com.yang.module_picture.ui.activity.PictureItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_picture.ui.activity.PictureSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_picture.ui.activity.PictureUploadActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yang.lib_common.widget.CommonToolBar
+        android:id="@id/commonToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerContent="账号设置" />
+
+    <com.yang.lib_common.widget.DampScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="修改密码"
+                app:itemLeftImgVisible="false"
+                android:id="@+id/icv_change_password"
+                app:itemRightContentVisible="false"/>
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="账号安全"
+                app:itemLeftImgVisible="false"
+                android:id="@+id/icv_download_setting"
+                app:itemRightContentVisible="false" />
+        </LinearLayout>
+
+    </com.yang.lib_common.widget.DampScrollView>
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+apply from: '../module_config.gradle'
+
+android {
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId 'com.yang.module_mine'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ":lib_common")
+}

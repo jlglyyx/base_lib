@@ -1,0 +1,14 @@
+apply from: '../module_config.gradle'
+
+android {
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId 'com.android.module_picture'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ":lib_common")
+}
+

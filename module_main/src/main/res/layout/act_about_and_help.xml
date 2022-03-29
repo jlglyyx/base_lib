@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yang.lib_common.widget.CommonToolBar
+        android:id="@id/commonToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerContent="关于与帮助" />
+
+    <com.yang.lib_common.widget.DampScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="使用帮助"
+                app:itemLeftImgVisible="false"
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/icv_help"
+                app:itemRightContentVisible="false"/>
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="关于广告"
+                app:itemLeftImgVisible="false"
+                android:id="@+id/icv_ad"
+                app:itemRightContentVisible="false"/>
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="意见反馈"
+                android:id="@+id/icv_feed_back"
+                app:itemLeftImgVisible="false"
+                app:itemRightContentVisible="false" />
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="当前版本"
+                app:itemLeftImgVisible="false"
+                android:id="@+id/icv_version"
+                android:layout_marginTop="@dimen/dp_10"
+                app:itemRightContent="1.0.0" />
+        </LinearLayout>
+
+    </com.yang.lib_common.widget.DampScrollView>
+
+</LinearLayout>

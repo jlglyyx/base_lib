@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yang.lib_common.widget.CommonToolBar
+        android:id="@id/commonToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerContent="设置" />
+
+    <com.yang.lib_common.widget.DampScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="账号设置"
+                app:itemLeftImgVisible="false"
+                android:id="@+id/icv_account_setting"
+                android:layout_marginTop="@dimen/dp_10"
+                app:itemRightContentVisible="false"/>
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="下载设置"
+                app:itemLeftImgVisible="false"
+                android:id="@+id/icv_download_setting"
+                app:itemRightContentVisible="false" />
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="颜色设置"
+                app:itemLeftImgVisible="false"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:id="@+id/icv_color_setting"
+                app:itemRightContentVisible="false" />
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="字体设置"
+                app:itemLeftImgVisible="false"
+                android:visibility="gone"
+                android:id="@+id/icv_font_setting"
+                app:itemRightContentVisible="false" />
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="清除缓存"
+                app:itemLeftImgVisible="false"
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/icv_cache"
+                app:itemRightContent="100MB" />
+        </LinearLayout>
+
+    </com.yang.lib_common.widget.DampScrollView>
+
+</LinearLayout>

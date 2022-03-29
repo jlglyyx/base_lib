@@ -1,0 +1,15 @@
+apply from: '../module_config.gradle'
+
+android {
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId 'com.android.module_login'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(path: ":lib_common")
+
+}

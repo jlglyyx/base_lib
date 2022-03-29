@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <com.yang.lib_common.widget.CommonToolBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/commonToolBar"
+        app:centerContent="添加收货地址"
+        app:rightContent="确定"
+        app:rightContentVisible="true"/>
+
+    <com.yang.lib_common.widget.DampScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:text="收货地址："
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:textSize="@dimen/sp_14"
+                android:background="@null"
+                android:hint="请输入收货地址"
+                app:layout_constraintLeft_toRightOf="@+id/address"
+                app:layout_constraintRight_toLeftOf="@+id/iv_location"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                app:layout_constraintTop_toTopOf="@+id/tv_address"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_address"
+                app:layout_constraintRight_toRightOf="parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_1"
+                android:background="@color/gainsboro"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address"/>
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:text="详细描述："
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+            <EditText
+                android:id="@+id/tv_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:background="@null"
+                android:textSize="@dimen/sp_14"
+                android:hint="请输入详细描述（门牌号等信息）"
+                app:layout_constraintLeft_toRightOf="@+id/desc"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/desc" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_1"
+                android:background="@color/gainsboro"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:text="收件人姓名："
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+            <EditText
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:background="@null"
+                android:hint="请输入收件人姓名"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintLeft_toRightOf="@+id/name"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/name" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_1"
+                android:background="@color/gainsboro"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:text="收件人号码："
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+            <EditText
+                android:id="@+id/tv_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/sp_15"
+                android:background="@null"
+                android:hint="请输入收件人号码"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintLeft_toRightOf="@+id/phone"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/phone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_1"
+                android:background="@color/gainsboro"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.yang.lib_common.widget.DampScrollView>
+</LinearLayout>

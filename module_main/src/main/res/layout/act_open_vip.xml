@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yang.lib_common.widget.CommonToolBar
+        android:id="@id/commonToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerContent="开通VIP" />
+
+    <com.yang.lib_common.widget.DampScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardCornerRadius="@dimen/dp_10"-->
+<!--                android:layout_margin="@dimen/dp_5">-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:paddingHorizontal="@dimen/dp_10"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="当前等级：vip1"
+                        android:id="@+id/tv_level"
+                        android:textSize="@dimen/sp_16"
+                        android:textColor="@color/red"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="到期时间：2020-10-11 10:11:10"
+                        android:id="@+id/tv_time"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_level"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:id="@+id/tv_progress"
+                        android:text="下一级进度：40/100"
+                        android:textSize="@dimen/sp_15"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="@dimen/dp_10"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_level"/>
+
+                    <ProgressBar
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_10"
+                        android:progress="50"
+                        android:id="@+id/prb_vip"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:minHeight="@dimen/dp_10"
+                        android:maxHeight="@dimen/dp_10"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/layer_list_vip_progress_horizontal"
+                        app:layout_constraintTop_toTopOf="@+id/tv_progress"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_progress"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_progress"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:max="100"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
+        </LinearLayout>
+    </com.yang.lib_common.widget.DampScrollView>
+
+</LinearLayout>

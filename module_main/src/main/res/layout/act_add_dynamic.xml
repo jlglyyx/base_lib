@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yang.lib_common.widget.CommonToolBar
+        android:id="@id/commonToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerContent="发表"
+        app:rightContent="确定"
+        app:rightContentVisible="true" />
+
+    <com.yang.lib_common.widget.DampScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="发表些什么..."
+                android:minLines="5"
+                android:padding="@dimen/dp_10"
+                android:textSize="@dimen/sp_14" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:paddingHorizontal="@dimen/dp_10" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:textSize="@dimen/sp_12"
+                    android:id="@+id/tv_visibility"
+                    android:text="公开"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_location"
+                    android:textSize="@dimen/sp_12"
+                    android:text="添加地点"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </com.yang.lib_common.widget.DampScrollView>
+
+</LinearLayout>

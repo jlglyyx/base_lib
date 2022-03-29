@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yang.module_mine">
+
+    <application>
+        <activity
+            android:name="com.yang.module_mine.ui.activity.MineOtherPersonInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.activity.MineChangeUserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.activity.MineViewHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineObtainTurnoverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineObtainExchangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineExchangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineGoodsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.activity.MineSignTurnoverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.activity.MineExtensionTurnoverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineObtainTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.activity.MineExtensionQRCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineAddAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineOrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yang.module_mine.ui.obtain.activity.MineCreateOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.MineChangePasswordActivity" />
+    </application>
+
+</manifest>

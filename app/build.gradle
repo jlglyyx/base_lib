@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        applicationId rootProject.ext.android.applicationId
+        resConfigs "zh"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+    signingConfigs {
+        debug {
+            storePassword DEBUG_STOREPASSWORD
+            keyPassword DEBUG_KEYPASSWORD
+            keyAlias DEBUG_KEYALIAS
+            storeFile file(DEBUG_PATH)
+        }
+        release {
+            storePassword RELEASE_STOREPASSWORD
+            keyPassword RELEASE_KEYPASSWORD
+            keyAlias RELEASE_KEYALIAS
+            storeFile file(RELEASE_PATH)
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    //V1_1.0.1_20201001142556_release.apk
+//    android.applicationVariants.all { variant  ->
+//        variant.outputs.all {
+//            outputFileName = "V${variant.versionCode}_${variant.versionName}_${new Date().format("yyyyMMddHHmmss")}_${variant.buildType.name}.apk"
+//        }
+//    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation project(path: ":lib_common")
+
+    if (!isModule.toBoolean()) {
+        implementation project(path: ':module_login')
+        implementation project(path: ':module_main')
+        implementation project(path: ':module_picture')
+        implementation project(path: ':module_mine')
+        implementation project(path: ':module_video')
+    }
+}

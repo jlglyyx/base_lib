@@ -1,0 +1,10 @@
+include ':apt-processor'
+include ':apt-annotation'
+include ':module_video'
+include ':module_mine'
+include ':module_picture'
+include ':app'
+include ':lib_common'
+include ':module_login'
+include ':module_main'
+rootProject.name = "My Application"
