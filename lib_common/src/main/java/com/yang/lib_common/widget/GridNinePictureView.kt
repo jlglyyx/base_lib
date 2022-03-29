@@ -20,7 +20,7 @@ import kotlin.math.ceil
 
 class GridNinePictureView : ViewGroup {
 
-    private var mContext: Context
+    private var mContext: Context = context
     private var mWidth: Int = 0
     private var mHeight: Int = 0
     private var dataSize = 0
@@ -89,7 +89,6 @@ class GridNinePictureView : ViewGroup {
         attrs,
         defStyleAttr
     ) {
-        this.mContext = context
         setWillNotDraw(false)
         init()
     }
@@ -113,16 +112,9 @@ class GridNinePictureView : ViewGroup {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
-        mImageViewWidth = measuredWidth / spanCount
-        for (i in 0 until childCount) {
-            val childAt = getChildAt(i)
-            val layoutParams = childAt.layoutParams
-            layoutParams.width = mImageViewWidth
-            layoutParams.height = mImageViewWidth
-            childAt.layoutParams = layoutParams
-        }
         measureChildren(widthMeasureSpec,heightMeasureSpec)
         Log.i("TAG", "onMeasure: ")
+
         setMeasuredDimension(
             widthSize,
             (measuredWidth / spanCount) * ceil(
@@ -133,6 +125,14 @@ class GridNinePictureView : ViewGroup {
                 } / spanCount.toFloat()
             ).toInt()
         )
+        mImageViewWidth = measuredWidth / spanCount
+        for (i in 0 until childCount) {
+            val childAt = getChildAt(i)
+            val layoutParams = childAt.layoutParams
+            layoutParams.width = mImageViewWidth
+            layoutParams.height = mImageViewWidth
+            childAt.layoutParams = layoutParams
+        }
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {

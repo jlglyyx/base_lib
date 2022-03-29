@@ -8,6 +8,8 @@ import com.yang.module_main.ui.main.activity.AddDynamicActivity
 import com.yang.module_main.ui.main.activity.DynamicDetailActivity
 import com.yang.module_main.ui.main.activity.MainActivity
 import com.yang.module_main.ui.main.fragment.MainFragment
+import com.yang.module_main.ui.main.fragment.MainLeftFragment
+import com.yang.module_main.ui.main.fragment.MainRightFragment
 import com.yang.module_main.ui.menu.activity.AccountSettingActivity
 import com.yang.module_main.ui.menu.activity.MyPushActivity
 import com.yang.module_main.ui.menu.activity.WebViewActivity
@@ -23,6 +25,8 @@ interface MainComponent {
     fun provideMainViewModelFactory(): MainViewModelFactory
     fun inject(mainActivity: MainActivity)
     fun inject(mainFragment: MainFragment)
+    fun inject(mainLeftFragment: MainLeftFragment)
+    fun inject(mainRightFragment: MainRightFragment)
     fun inject(myPushActivity: MyPushActivity)
     fun inject(addDynamicActivity: AddDynamicActivity)
     fun inject(dynamicDetailActivity: DynamicDetailActivity)

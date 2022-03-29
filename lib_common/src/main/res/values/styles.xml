@@ -52,6 +52,12 @@
         <item name="tabRippleColor">@android:color/transparent</item>
         <item name="tabIndicatorColor">@color/colorBar</item>
     </style>
+    <style name="mainTopTabTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/itemTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorBar</item>
+        <item name="tabRippleColor">@android:color/transparent</item>
+        <item name="tabIndicatorColor">@color/colorBar</item>
+    </style>
     <style name="itemTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/sp_14</item>
     </style>

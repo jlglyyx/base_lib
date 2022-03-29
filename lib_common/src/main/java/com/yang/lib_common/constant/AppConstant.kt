@@ -62,6 +62,8 @@ interface AppConstant {
 
 
         const val MAIN_FRAGMENT = "/$MODULE_MAIN/$FRAGMENT/MainFragment"
+        const val MAIN_LEFT_FRAGMENT = "/$MODULE_MAIN/$FRAGMENT/MainLeftFragment"
+        const val MAIN_RIGHT_FRAGMENT = "/$MODULE_MAIN/$FRAGMENT/MainRightFragment"
         const val LEFT_FRAGMENT = "/$MODULE_MAIN/$FRAGMENT/LeftFragment"
         const val MY_COLLECTION_FRAGMENT = "/$MODULE_MAIN/$FRAGMENT/MyCollectionFragment"
         const val MY_DOWNLOAD_FRAGMENT = "/$MODULE_MAIN/$FRAGMENT/MyDownLoadFragment"

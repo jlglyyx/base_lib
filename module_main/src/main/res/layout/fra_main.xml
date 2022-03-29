@@ -3,14 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
-    <com.yang.lib_common.widget.CommonToolBar
-        android:id="@id/commonToolBar"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@id/tabLayout"
+        style="@style/mainTopTabTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:centerContent="首页"
-        app:rightImgVisible="true" />
+        android:layout_height="wrap_content" />
 
-    <include layout="@layout/view_normal_recyclerview" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:layout_weight="1"/>
+
 </LinearLayout>
