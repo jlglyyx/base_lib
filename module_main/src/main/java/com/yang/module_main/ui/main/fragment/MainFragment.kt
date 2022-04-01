@@ -78,6 +78,7 @@ class MainFragment : BaseLazyFragment() {
     private fun initViewPager() {
 
         viewPager.adapter = TabAndViewPagerFragmentAdapter(this, fragments, titles)
+        viewPager.isUserInputEnabled = false
         viewPager.offscreenPageLimit = fragments.size
 
     }
@@ -87,7 +88,7 @@ class MainFragment : BaseLazyFragment() {
         TabLayoutMediator(
             tabLayout,
             viewPager,
-            true
+            true, false
         ) { tab, position ->
             tab.text = titles[position]
             tab.view.setOnLongClickListener { true }

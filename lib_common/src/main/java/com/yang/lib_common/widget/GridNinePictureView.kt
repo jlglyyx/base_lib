@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,7 +77,6 @@ class GridNinePictureView : ViewGroup {
                     addView(childView)
                 }
             }
-            Log.i("TAG", "set(value): =============")
         }
 
 
@@ -89,8 +87,11 @@ class GridNinePictureView : ViewGroup {
         attrs,
         defStyleAttr
     ) {
-        setWillNotDraw(false)
         init()
+        val obtainStyledAttributes = context.obtainStyledAttributes(attrs,R.styleable.GridNinePictureView)
+        maxChild = obtainStyledAttributes.getInt(R.styleable.GridNinePictureView_maxChild,maxChild)
+        spanCount = obtainStyledAttributes.getInt(R.styleable.GridNinePictureView_spanCount,spanCount)
+        obtainStyledAttributes.recycle()
     }
 
 
@@ -112,20 +113,7 @@ class GridNinePictureView : ViewGroup {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
-        measureChildren(widthMeasureSpec,heightMeasureSpec)
-        Log.i("TAG", "onMeasure: ")
-
-        setMeasuredDimension(
-            widthSize,
-            (measuredWidth / spanCount) * ceil(
-                if (dataSize > maxChild) {
-                    maxChild.toFloat()
-                } else {
-                    dataSize.toFloat()
-                } / spanCount.toFloat()
-            ).toInt()
-        )
-        mImageViewWidth = measuredWidth / spanCount
+        mImageViewWidth = widthSize / spanCount
         for (i in 0 until childCount) {
             val childAt = getChildAt(i)
             val layoutParams = childAt.layoutParams
@@ -133,10 +121,21 @@ class GridNinePictureView : ViewGroup {
             layoutParams.height = mImageViewWidth
             childAt.layoutParams = layoutParams
         }
+        measureChildren(widthMeasureSpec,heightMeasureSpec)
+        setMeasuredDimension(
+            widthSize,
+            (widthSize / spanCount) * ceil(
+                if (dataSize > maxChild) {
+                    maxChild.toFloat()
+                } else {
+                    dataSize.toFloat()
+                } / spanCount.toFloat()
+            ).toInt()
+        )
+
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        Log.i("TAG", "onLayout: ")
         layoutImage()
     }
 
@@ -145,42 +144,36 @@ class GridNinePictureView : ViewGroup {
         var countHeight = 0
         for (i in 0 until childCount) {
             val childAt = getChildAt(i)
-            if (i % spanCount == 0) {
-                countWidth = 0
-                if (i != 0) {
+            if (i % spanCount == 0){
+                if (i > 0){
                     countHeight += mImageViewWidth
                 }
-                childAt.layout(
-                    countWidth,
-                    countHeight,
-                    countWidth + mImageViewWidth,
-                    countHeight + mImageViewWidth
-                )
-            } else {
+                countWidth = 0
+            }else{
                 countWidth += mImageViewWidth
-                childAt.layout(
-                    countWidth,
-                    countHeight,
-                    countWidth + mImageViewWidth,
-                    countHeight + mImageViewWidth
+            }
+
+            childAt.layout(
+                countWidth,
+                countHeight,
+                countWidth + mImageViewWidth,
+                countHeight + mImageViewWidth
+            )
+            if (i == maxChild - 1) {
+                rectF.set(
+                    countWidth.toFloat(),
+                    countHeight.toFloat(),
+                    (countWidth + mImageViewWidth).toFloat(),
+                    (countHeight + mImageViewWidth).toFloat()
                 )
-                if (i == 8) {
-                    rectF.set(
-                        countWidth.toFloat(),
-                        countHeight.toFloat(),
-                        (countWidth + mImageViewWidth).toFloat(),
-                        (countHeight + mImageViewWidth).toFloat()
-                    )
-                }
             }
 
         }
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
         if (dataSize - maxChild > 0) {
-            Log.i("TAG", "onDraw: =============")
             val exceedCount = dataSize - maxChild
             val bgLayer = canvas.saveLayer(rectF, null)
             canvas.drawRect(rectF, mPaint)

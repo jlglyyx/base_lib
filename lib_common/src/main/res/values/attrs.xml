@@ -28,4 +28,9 @@
             <enum name="normal" value="3"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="GridNinePictureView">
+        <attr name="spanCount" format="integer"/>
+        <attr name="maxChild" format="integer"/>
+    </declare-styleable>
 </resources>

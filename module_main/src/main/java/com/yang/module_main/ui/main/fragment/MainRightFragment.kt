@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bytedance.sdk.openadsdk.TTAdDislike
 import com.bytedance.sdk.openadsdk.TTAdNative
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.google.gson.Gson
 import com.lxj.xpopup.XPopup
@@ -140,6 +141,7 @@ class MainRightFragment : BaseLazyFragment(), OnRefreshLoadMoreListener {
         recyclerView.setOnClickListener {
             Log.i(TAG, "initRecyclerView: ")
         }
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT)
         recyclerView.adapter = mAdapter
         registerRefreshAndRecyclerView(smartRefreshLayout, mAdapter)
     }
