@@ -1,59 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/dp_10"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <View
-        android:layout_width="@dimen/dp_1"
-        android:layout_height="0dp"
-        android:background="@color/colorBar"
-        android:id="@+id/view_line_left"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-    <TextView
-        android:id="@+id/tv_content"
-        android:text="亿亿亿亿"
-        android:layout_width="0dp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_14"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        app:layout_constraintLeft_toLeftOf="@+id/gridNinePictureView"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <com.yang.lib_common.widget.GridNinePictureView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginStart="@dimen/dp_10"
-        app:maxChild="6"
-        app:layout_constraintLeft_toRightOf="@+id/view_line_left"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_content"
-        android:id="@+id/gridNinePictureView"/>
-    <TextView
-        android:id="@+id/tv_time"
-        android:text="2020-10-11 12:30:12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_12"
-        app:layout_constraintLeft_toLeftOf="@+id/gridNinePictureView"
-        app:layout_constraintTop_toBottomOf="@+id/gridNinePictureView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginBottom="@dimen/dp_5" />
+    android:layout_marginTop="@dimen/dp_10"
+    app:cardCornerRadius="@dimen/dp_10">
 
-    <View
-        android:layout_width="@dimen/dp_0"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/lightgrey"
-        android:id="@+id/view_line_bottom"
-        android:visibility="gone"
-        app:layout_constraintLeft_toRightOf="@+id/view_line_left"
-        app:layout_constraintTop_toBottomOf="@+id/tv_time"
-        app:layout_constraintRight_toRightOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <View
+            android:id="@+id/view_line_left"
+            android:layout_width="@dimen/dp_4"
+            android:layout_height="0dp"
+            android:background="@color/colorBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="第二种解释就是Android主流的dpi有120，160，240，320，480。在160dpi的情况下 1dp = 1px，在120dpi的情况下 0.75 dp = 1px，在240dpi的情况下 1.5 dp = 1px，在320dpi的情况下 2 dp = 1px，在480dpi的情况下 3 dp = 1px，这样计算出来的数字在不同手机密度下的是最简单的，简单的说就是为了不同手机手机密度的屏幕进行适配  。 如果你以120dpi为标准 ，发现在160dpi下为1.3333，其他类似存在误差，所以标准是160."
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.yang.lib_common.widget.GridNinePictureView
+            android:id="@+id/gridNinePictureView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintLeft_toRightOf="@+id/view_line_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_content"
+            app:maxChild="6" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="2020-10-11 12:30:12记录"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@+id/gridNinePictureView" />
+
+        <View
+            android:id="@+id/view_line_bottom"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/lightgrey"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/view_line_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

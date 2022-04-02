@@ -286,6 +286,7 @@ class MainLeftFragment : BaseLazyFragment(), OnRefreshLoadMoreListener {
             val sivImg = helper.getView<ShapeableImageView>(R.id.siv_img)
             helper.addOnClickListener(R.id.siv_img)
             helper.setText(R.id.tv_time, item.createTime)
+            helper.setText(R.id.tv_name, item.userName)
             Glide.with(sivImg).load(
                 item.userImage
                     ?: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F39%2Fb7%2F53%2F39b75357f98675e2d6d5dcde1fb805a3.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642840086&t=2a7574a5d8ecc96669ac3e050fe4fd8e"

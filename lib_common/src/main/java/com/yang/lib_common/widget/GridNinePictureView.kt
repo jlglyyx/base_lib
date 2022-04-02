@@ -24,13 +24,14 @@ class GridNinePictureView : ViewGroup {
     private var mHeight: Int = 0
     private var dataSize = 0
     private var spanCount = 3
+    private val initSpanCount = 3
     private var mImageViewWidth: Int = 0
     private var rectF: RectF = RectF()
     private var maxChild = 9
     private var mPaint = Paint()
     private var mTextPaint = Paint()
     var imageCallback: ImageCallback? = null
-    private lateinit var childView:ViewGroup
+    private lateinit var childView: ViewGroup
 
     interface ImageCallback {
         fun imageClickListener(position: Int)
@@ -47,7 +48,8 @@ class GridNinePictureView : ViewGroup {
                 } else {
                     dataSize
                 }) {
-                    childView = LayoutInflater.from(mContext).inflate(R.layout.view_item_grid_nine_picture,this,false) as ViewGroup
+                    childView = LayoutInflater.from(mContext)
+                        .inflate(R.layout.view_item_grid_nine_picture, this, false) as ViewGroup
                     val imageView = childView.findViewById<ImageView>(R.id.iv_nine_image)
                     imageView.setOnClickListener {
                         imageCallback?.imageClickListener(i)
@@ -76,6 +78,12 @@ class GridNinePictureView : ViewGroup {
                     }
                     addView(childView)
                 }
+
+                spanCount = if (childCount < initSpanCount){
+                    dataSize
+                }else{
+                    initSpanCount
+                }
             }
         }
 
@@ -88,9 +96,11 @@ class GridNinePictureView : ViewGroup {
         defStyleAttr
     ) {
         init()
-        val obtainStyledAttributes = context.obtainStyledAttributes(attrs,R.styleable.GridNinePictureView)
-        maxChild = obtainStyledAttributes.getInt(R.styleable.GridNinePictureView_maxChild,maxChild)
-        spanCount = obtainStyledAttributes.getInt(R.styleable.GridNinePictureView_spanCount,spanCount)
+        val obtainStyledAttributes =
+            context.obtainStyledAttributes(attrs, R.styleable.GridNinePictureView)
+        maxChild = obtainStyledAttributes.getInt(R.styleable.GridNinePictureView_maxChild, maxChild)
+        spanCount =
+            obtainStyledAttributes.getInt(R.styleable.GridNinePictureView_spanCount, spanCount)
         obtainStyledAttributes.recycle()
     }
 
@@ -100,7 +110,7 @@ class GridNinePictureView : ViewGroup {
         mPaint.style = Paint.Style.FILL
         mTextPaint.color = Color.parseColor("#8a8a8a")
         mTextPaint.style = Paint.Style.FILL
-        mTextPaint.textSize = 50f.dip2px(mContext).toFloat()
+        mTextPaint.textSize = 30f.dip2px(mContext).toFloat()
     }
 
 
@@ -121,7 +131,7 @@ class GridNinePictureView : ViewGroup {
             layoutParams.height = mImageViewWidth
             childAt.layoutParams = layoutParams
         }
-        measureChildren(widthMeasureSpec,heightMeasureSpec)
+        measureChildren(widthMeasureSpec, heightMeasureSpec)
         setMeasuredDimension(
             widthSize,
             (widthSize / spanCount) * ceil(
@@ -130,10 +140,11 @@ class GridNinePictureView : ViewGroup {
                 } else {
                     dataSize.toFloat()
                 } / spanCount.toFloat()
-            ).toInt()
+            ).toInt()*3/4
         )
-
     }
+
+
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         layoutImage()
@@ -144,27 +155,27 @@ class GridNinePictureView : ViewGroup {
         var countHeight = 0
         for (i in 0 until childCount) {
             val childAt = getChildAt(i)
-            if (i % spanCount == 0){
-                if (i > 0){
+            if (i % spanCount == 0) {
+                if (i > 0) {
                     countHeight += mImageViewWidth
                 }
                 countWidth = 0
-            }else{
+            } else {
                 countWidth += mImageViewWidth
             }
 
             childAt.layout(
                 countWidth,
-                countHeight,
+                countHeight*3/4,
                 countWidth + mImageViewWidth,
-                countHeight + mImageViewWidth
+                (countHeight + mImageViewWidth)*3/4
             )
             if (i == maxChild - 1) {
                 rectF.set(
                     countWidth.toFloat(),
-                    countHeight.toFloat(),
+                    countHeight*3/4.toFloat(),
                     (countWidth + mImageViewWidth).toFloat(),
-                    (countHeight + mImageViewWidth).toFloat()
+                    (countHeight + mImageViewWidth)*3/4.toFloat()
                 )
             }
 

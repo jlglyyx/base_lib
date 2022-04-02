@@ -141,7 +141,7 @@ class MainRightFragment : BaseLazyFragment(), OnRefreshLoadMoreListener {
         recyclerView.setOnClickListener {
             Log.i(TAG, "initRecyclerView: ")
         }
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT)
+        mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         recyclerView.adapter = mAdapter
         registerRefreshAndRecyclerView(smartRefreshLayout, mAdapter)
     }
