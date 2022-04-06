@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/dp_10"
+    android:paddingTop="@dimen/dp_8"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/circleShapeImage"
+        android:id="@+id/siv_image" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="我叫张三"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_15"
+        android:layout_marginStart="@dimen/dp_10"
+        app:layout_constraintTop_toTopOf="@+id/siv_image"
+        app:layout_constraintLeft_toRightOf="@+id/siv_image"
+        app:layout_constraintRight_toLeftOf="@+id/tv_time"/>
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="昨天"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <TextView
+        android:id="@+id/tv_last_content"
+        android:layout_width="0dp"
+        android:maxLines="1"
+        android:text="上一次发送了什么"
+        android:textSize="@dimen/sp_13"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="@+id/siv_image"
+        app:layout_constraintLeft_toRightOf="@+id/siv_image"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <View
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_last_content"
+        app:layout_constraintRight_toRightOf="@+id/tv_last_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_last_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@color/linen"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

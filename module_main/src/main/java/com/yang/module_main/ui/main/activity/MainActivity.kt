@@ -110,7 +110,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-
+        //XPopup.Builder(this).asCustom(SplashIntoDialog(this)).show()
     }
 
     private fun initDrawerLayout() {

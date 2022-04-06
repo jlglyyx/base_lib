@@ -35,13 +35,13 @@ class ItemTouchHelperCallback constructor(private val moveAndSwipedListener:Move
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        moveAndSwipedListener.onMoved(viewHolder.adapterPosition,target.adapterPosition)
+        moveAndSwipedListener.onMoved(viewHolder.absoluteAdapterPosition,target.absoluteAdapterPosition)
         return true
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-        moveAndSwipedListener.onDelete(viewHolder.adapterPosition)
+        moveAndSwipedListener.onDelete(viewHolder.absoluteAdapterPosition)
     }
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
