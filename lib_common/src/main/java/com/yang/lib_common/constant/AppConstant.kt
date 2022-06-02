@@ -87,6 +87,7 @@ interface AppConstant {
         const val LOGIN_ACTIVITY = "/$MODULE_LOGIN/$ACTIVITY/LoginActivity"
         const val REGISTER_ACTIVITY = "/$MODULE_LOGIN/$ACTIVITY/RegisterActivity"
         const val CONNECT_ADDRESS_ACTIVITY = "/$MODULE_LOGIN/$ACTIVITY/ConnectAddressActivity"
+        const val USER_TYPE_SELECT_ACTIVITY = "/$MODULE_LOGIN/$ACTIVITY/UserTypeSelectActivity"
 
         /**
          * video

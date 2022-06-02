@@ -10,12 +10,11 @@ ext {
 
 
     android = [
-
             compileSdkVersion: 29,
             buildToolsVersion: "30.0.3",
-            applicationId    : "com.yang.collection",
+            applicationId    : "com.yang.taobao.help",
             minSdkVersion    : 21,
-            targetSdkVersion : 29,
+            targetSdkVersion : 31,
             versionCode      : 1,
             versionName      : "1.0.0",
 
@@ -78,6 +77,7 @@ ext {
             "search"                       : 'com.amap.api:search:7.9.0',
             "flowlayout"                   : "com.hyman:flowlayout-lib:1.1.2",
             "tbs"                          : "com.tencent.tbs:tbssdk:44085",
+            "annotation-api"                          : "javax.annotation:javax.annotation-api:1.3.2",
 
     ]
 

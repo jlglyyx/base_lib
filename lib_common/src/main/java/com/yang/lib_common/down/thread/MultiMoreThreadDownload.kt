@@ -292,7 +292,7 @@ class MultiMoreThreadDownload(
                         .setData(
                             FileProvider.getUriForFile(
                                 mContext,
-                                "com.yang.collection.fileProvider",
+                                "com.yang.taobao.help.fileProvider",
                                 file
                             )
                         ),

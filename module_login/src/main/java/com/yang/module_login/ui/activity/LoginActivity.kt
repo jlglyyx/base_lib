@@ -42,7 +42,7 @@ class LoginActivity : BaseActivity() {
 
     private var videoUrl = "${Environment.getExternalStorageDirectory()}/MFiles/video/aaa.mp4"
 
-    private var mediaPlayer:MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     private var data = -1
 
@@ -53,7 +53,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initData() {
-        data = intent.getIntExtra(AppConstant.Constant.DATA,-1)
+        data = intent.getIntExtra(AppConstant.Constant.DATA, -1)
 
         Log.i(TAG, "initData: $loginViewModel")
     }
@@ -61,10 +61,10 @@ class LoginActivity : BaseActivity() {
     override fun initView() {
         initVideoView()
         iv_password_visibility.setOnClickListener {
-            if (passwordVisibility){
+            if (passwordVisibility) {
                 et_password.transformationMethod = PasswordTransformationMethod.getInstance()
                 iv_password_visibility.setImageResource(R.drawable.iv_password_gone)
-            }else{
+            } else {
                 et_password.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 iv_password_visibility.setImageResource(R.drawable.iv_password_visibility)
             }
@@ -123,13 +123,17 @@ class LoginActivity : BaseActivity() {
                 AppConstant.Constant.LOGIN_SUCCESS
             )
             updateUserInfo(it)
-            buildARouter(AppConstant.RoutePath.MAIN_ACTIVITY).withOptionsCompat(
-                ActivityOptionsCompat.makeCustomAnimation(
-                    this@LoginActivity,
-                    R.anim.bottom_in,
-                    R.anim.bottom_out
-                )
-            ).navigation()
+            if (it.userType == -1) {
+                buildARouter(AppConstant.RoutePath.USER_TYPE_SELECT_ACTIVITY).navigation()
+            } else {
+                buildARouter(AppConstant.RoutePath.MAIN_ACTIVITY).withOptionsCompat(
+                    ActivityOptionsCompat.makeCustomAnimation(
+                        this@LoginActivity,
+                        R.anim.bottom_in,
+                        R.anim.bottom_out
+                    )
+                ).navigation()
+            }
             finish()
         })
     }
@@ -145,7 +149,7 @@ class LoginActivity : BaseActivity() {
             return
         }
 
-        if (TextUtils.equals(et_user.text.toString(),"30")){
+        if (TextUtils.equals(et_user.text.toString(), "30")) {
             deleteDirectory(File("${BaseApplication.baseApplication.cacheDir}/app_/db_"))
             Log.i(TAG, "checkForm: 数据库删除成功")
         }
@@ -154,7 +158,7 @@ class LoginActivity : BaseActivity() {
             showShort(getString(R.string.string_input_password))
             return
         }
-        if (et_password.text.toString().length < 6){
+        if (et_password.text.toString().length < 6) {
             showShort(getString(R.string.string_password_must_six))
             return
         }
@@ -181,7 +185,7 @@ class LoginActivity : BaseActivity() {
 
     override fun finish() {
         super.finish()
-        if (data != -1){
+        if (data != -1) {
             overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out)
         }
     }

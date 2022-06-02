@@ -9,7 +9,7 @@
         android:id="@id/commonToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:centerContent="加油"
+        app:centerContent="通讯录"
         app:leftImgVisible="false" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

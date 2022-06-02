@@ -218,13 +218,17 @@ class SplashActivity : BaseActivity(), TTSplashAd.AdInteractionListener {
                     AppConstant.Constant.LOGIN_SUCCESS
                 )
                 updateUserInfo(mUserInfo)
-                buildARouter(AppConstant.RoutePath.MAIN_ACTIVITY).withOptionsCompat(
-                    ActivityOptionsCompat.makeCustomAnimation(
-                        this@SplashActivity,
-                        R.anim.fade_in,
-                        R.anim.fade_out
-                    )
-                ).navigation()
+                if (mUserInfo.userType == -1) {
+                    buildARouter(AppConstant.RoutePath.USER_TYPE_SELECT_ACTIVITY).navigation()
+                } else {
+                    buildARouter(AppConstant.RoutePath.MAIN_ACTIVITY).withOptionsCompat(
+                        ActivityOptionsCompat.makeCustomAnimation(
+                            this@SplashActivity,
+                            R.anim.fade_in,
+                            R.anim.fade_out
+                        )
+                    ).navigation()
+                }
                 finish()
             })
         }

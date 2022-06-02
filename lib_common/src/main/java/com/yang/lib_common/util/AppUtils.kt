@@ -3,11 +3,14 @@
 package com.yang.lib_common.util
 
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityOptionsCompat
 import com.google.gson.Gson
 import com.jakewharton.rxbinding4.view.clicks
@@ -181,6 +184,11 @@ fun getUserInfo(): UserInfoData? {
  */
 fun updateUserInfo(userInfoData:UserInfoData) {
     getDefaultMMKV().encode(AppConstant.Constant.USER_INFO, userInfoData.toJson())
+}
+
+fun getCurrentUserId():String{
+    val userInfo = getUserInfo()
+    return userInfo?.id?:""
 }
 
 /**
@@ -386,3 +394,12 @@ fun toCloseAd(vipLevel:Int):Boolean{
     return false
 }
 
+/**
+ * 关闭键盘
+ * @param context
+ * @param window
+ */
+fun hideSoftInput(context: Context,view: View){
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken,0)
+}

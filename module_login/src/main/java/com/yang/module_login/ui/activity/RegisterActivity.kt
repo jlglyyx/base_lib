@@ -109,7 +109,7 @@ class RegisterActivity : BaseActivity() {
             null,
             et_user.text.toString().toInt(),
             false,
-            0,
+            -1,
             null,
             null,
             null,
