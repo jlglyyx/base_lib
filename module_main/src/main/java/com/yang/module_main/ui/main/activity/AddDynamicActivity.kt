@@ -18,6 +18,7 @@ import com.yang.lib_common.bus.event.UIChangeLiveData
 import com.yang.lib_common.constant.AppConstant
 import com.yang.lib_common.data.MediaInfoBean
 import com.yang.lib_common.dialog.ImageViewPagerDialog
+import com.yang.lib_common.dialog.PayTaskDialog
 import com.yang.lib_common.dialog.SearchRecyclerViewDialog
 import com.yang.lib_common.proxy.InjectViewModelProxy
 import com.yang.lib_common.util.*
@@ -27,10 +28,7 @@ import com.yang.module_main.adapter.PictureSelectAdapter
 import com.yang.module_main.data.model.DynamicData
 import com.yang.module_main.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.act_add_dynamic.*
-import kotlinx.android.synthetic.main.act_add_dynamic.commonToolBar
 import kotlinx.android.synthetic.main.act_add_dynamic.recyclerView
-import kotlinx.android.synthetic.main.act_add_dynamic.tv_location
-import kotlinx.android.synthetic.main.act_upload.*
 import kotlinx.android.synthetic.main.fra_left.*
 import java.util.*
 
@@ -46,6 +44,11 @@ class AddDynamicActivity : BaseActivity() {
 
     private lateinit var imageView:ImageView
 
+    private var mPayTaskDialog: PayTaskDialog? = null
+
+    private var checkArray = arrayOf("是", "否")
+    private var selectCheck = "是"
+
 
     override fun getLayout(): Int {
         return R.layout.act_add_dynamic
@@ -57,41 +60,26 @@ class AddDynamicActivity : BaseActivity() {
     override fun initView() {
         commonToolBar.tVRightCallBack = object : CommonToolBar.TVRightCallBack {
             override fun tvRightClickListener() {
-                if (pictureSelectAdapter.data.isEmpty()){
-                    if (!TextUtils.isEmpty(et_dynamic.text.toString())){
-                        addDynamic()
-                    }else{
-                        showShort("要说些什么才能发表哦")
-                    }
-                    return
-                }
-                uploadFile(pictureSelectAdapter.data)
+                checkForm()
             }
         }
-
-        tv_location.clicks().subscribe {
-            val searchRecyclerViewDialog = SearchRecyclerViewDialog(this)
-            searchRecyclerViewDialog.searchRecyclerViewDialogCallBack = object : SearchRecyclerViewDialog.SearchRecyclerViewDialogCallBack{
-                override fun getText(s: String) {
-                    tv_location.text = s
-                }
-            }
-            XPopup.Builder(this).asCustom(searchRecyclerViewDialog).show()
-        }
-        tv_visibility.clicks().subscribe {
-            XPopup.Builder(this).asBottomList("", arrayOf("公开","仅自己")
+        icv_advance_payment.clicks().subscribe {
+            XPopup.Builder(this).asBottomList(
+                "", checkArray
             ) { position, text ->
-                tv_visibility.text = text
+                selectCheck = text
+                icv_advance_payment.rightContent = text
             }.show()
         }
 
         initRecyclerView()
+
+        ViewLayoutChangeUtil().add(findViewById(android.R.id.content))
     }
 
     private fun addDynamic() {
         val dynamicData = DynamicData()
         dynamicData.userId = getUserInfo()?.id
-        dynamicData.content = et_dynamic.text.toString()
         dynamicData.imageUrls = mainViewModel.pictureListLiveData.value?.formatWithSymbol("#")
         mainViewModel.addDynamic(dynamicData)
     }
@@ -159,6 +147,70 @@ class AddDynamicActivity : BaseActivity() {
                 ImageViewPagerDialog(this, imageList , position)
             XPopup.Builder(this).asCustom(imageViewPagerDialog).show()
         }
+    }
+
+    private fun checkForm(){
+        val etTaskTitle = et_task_title.text.toString()
+        val etTaskContent = et_task_content.text.toString()
+        val etTaskShop = et_task_shop.text.toString()
+        val etTaskLink = et_task_link.text.toString()
+        val etTaskKeyword = et_task_key_word.text.toString()
+        val etTaskNumber = et_task_number.text.toString()
+        val etTaskPrice = et_task_price.text.toString()
+        val etTaskCommission = et_task_commission.text.toString()
+
+        if (TextUtils.isEmpty(etTaskTitle)){
+            showShort("请输入任务标题")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskContent)){
+            showShort("请输入任务内容")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskShop)){
+            showShort("请输入店铺名称")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskLink)){
+            showShort("请输入宝贝链接")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskKeyword)){
+            showShort("请输入宝贝关键词")
+            return
+        }
+        if (pictureSelectAdapter.data.isNullOrEmpty()){
+            showShort("请上传宝贝图片")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskNumber)){
+            showShort("请输入放单数量")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskPrice)){
+            showShort("请输入商品金额")
+            return
+        }
+        if (TextUtils.isEmpty(etTaskCommission)){
+            showShort("请输入商品佣金")
+            return
+        }
+
+        if (null == mPayTaskDialog){
+            mPayTaskDialog = PayTaskDialog(this@AddDynamicActivity)
+            mPayTaskDialog!!.onItemClickListener = object :PayTaskDialog.OnItemClickListener{
+                override fun onCancelClickListener() {
+                    mPayTaskDialog!!.dismiss()
+                }
+
+                override fun onConfirmClickListener() {
+                    uploadFile(pictureSelectAdapter.data)
+                }
+
+            }
+        }
+        XPopup.Builder(this@AddDynamicActivity).asCustom(mPayTaskDialog).show()
+
     }
 
 

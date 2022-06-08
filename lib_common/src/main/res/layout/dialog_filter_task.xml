@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/shape_search_dialog_bg">
 
@@ -52,6 +52,17 @@
         app:layout_constraintStart_toEndOf="@+id/tv_price_center"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/tv_task_status"
+        android:text="任务状态："
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginStart="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/et_price_end"/>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +70,7 @@
         android:layout_marginHorizontal="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_10"
         android:id="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/et_price_end">
+        app:layout_constraintTop_toBottomOf="@+id/tv_task_status">
 
         <RadioButton
             android:layout_width="0dp"
@@ -111,6 +122,77 @@
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/tv_task_type"
+        android:text="任务类型："
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginStart="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:id="@+id/task_radioGroup"
+        android:layout_marginBottom="@dimen/dp_30"
+        app:layout_constraintBottom_toTopOf="@+id/tv_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_task_type">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:button="@null"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/black"
+            android:background="@drawable/selector_filter_status"
+            android:text="补单任务"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:button="@null"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="@dimen/dp_8"
+            android:background="@drawable/selector_filter_status"
+            android:text="浏览任务"/>
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:button="@null"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/black"
+            android:background="@drawable/selector_filter_status"
+            android:text="订阅任务"/>
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:button="@null"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/black"
+            android:background="@drawable/selector_filter_status"
+            android:text="权重任务"/>
+
+    </RadioGroup>
     <TextView
         android:id="@+id/tv_cancel"
         android:layout_width="0dp"

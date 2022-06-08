@@ -9,31 +9,177 @@
         android:id="@id/commonToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:centerContent="发表"
+        app:centerContent="发布补单任务"
         app:rightContent="确定"
         app:rightContentVisible="true" />
 
-    <com.yang.lib_common.widget.DampScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:isScrollContainer="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/et_dynamic"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="*超过平台给予免费买家垫付额度需要缴纳保证金，当前剩余：30元"/>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="top"
-                android:hint="发表些什么..."
-                android:minLines="5"
                 android:padding="@dimen/dp_10"
-                android:textSize="@dimen/sp_14" />
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="任务标题："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
 
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:id="@+id/et_task_title"
+                    android:hint="请输入任务标题（20字）"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="任务内容："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:hint="请输入任务内容"
+                    android:minLines="3"
+                    android:id="@+id/et_task_content"
+                    android:gravity="top"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="店铺名称："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:hint="请输入店铺名称"
+                    android:gravity="top"
+                    android:id="@+id/et_task_shop"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="宝贝链接："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:hint="请输入宝贝链接"
+                    android:minLines="3"
+                    android:gravity="top"
+                    android:id="@+id/et_task_link"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="宝贝关键词："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:hint="请输入宝贝关键词（多个宝贝关键词用，隔开）"
+                    android:minLines="3"
+                    android:gravity="top"
+                    android:id="@+id/et_task_key_word"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="宝贝图片："
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/recyclerView"
                 android:layout_width="match_parent"
@@ -43,33 +189,93 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10"
-                    android:paddingStart="@dimen/dp_10"
-                    android:paddingVertical="@dimen/dp_10"
-                    android:paddingEnd="@dimen/dp_5"
-                    android:textSize="@dimen/sp_12"
-                    android:id="@+id/tv_visibility"
-                    android:text="公开"/>
-                <TextView
+                    android:text="放单数量："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/dp_5"
-                    android:paddingVertical="@dimen/dp_10"
-                    android:paddingEnd="@dimen/dp_10"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:id="@+id/tv_location"
-                    android:textSize="@dimen/sp_12"
-                    android:text="添加地点"/>
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp_5"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:id="@+id/et_task_number"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textSize="@dimen/sp_14" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品金额："
+                    android:textColor="@color/black"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:padding="@dimen/dp_5"
+                    android:layout_weight="1"
+                    android:id="@+id/et_task_price"
+                    android:hint="0.0"
+                    android:digits="0123456789."
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="每单商品佣金："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:id="@+id/et_task_commission"
+                    android:hint="请输入每单商品佣金"
+                    android:digits="0123456789."
+                    android:gravity="top"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@color/COLOR_F0DCDCDC"/>
+            <com.yang.lib_common.widget.ItemContentView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLeftContent="是否买家垫付"
+                app:itemRightContent="是"
+                android:id="@+id/icv_advance_payment"
+                app:itemLeftImgVisible="false"/>
+
         </LinearLayout>
 
 
-    </com.yang.lib_common.widget.DampScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

@@ -21,6 +21,10 @@
         <attr name="itemRightContentVisible" format="boolean"/>
         <attr name="itemBg" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="ItemInputView">
+        <attr name="leftTitle" format="string"/>
+        <attr name="itv_minLines" format="integer"/>
+    </declare-styleable>
     <declare-styleable name="ImageScrollView">
         <attr name="speed" format="float"/>
         <attr name="scrollType" format="enum">

@@ -17,6 +17,7 @@
     <color name="navajowhite">#ffdead</color><!--纳瓦白 -->
     <color name="grey">#808080</color><!--灰色 -->
     <color name="gainsboro">#dcdcdc</color><!--淡灰色 -->
+    <color name="COLOR_F0DCDCDC">#f0dcdcdc</color><!--淡灰色 -->
     <color name="lightgrey">#d3d3d3</color><!--亮灰色 -->
     <color name="darkgrey">#a9a9a9</color><!--暗灰色 -->
     <color name="ffdarkgrey">#0fa9a9a9</color><!--暗灰色 -->
