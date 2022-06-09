@@ -50,7 +50,7 @@ class MineOtherPersonInfoActivity : BaseActivity() {
             }
             tv_name.text = it?.userName?:"修改一下昵称吧"
             tv_account.text = "账号：${it?.userAccount}"
-            tv_vip_level.text = "等级：vip${it?.userVipLevel?:""}"
+            tv_vip_level.text = "等级：VIP_${it?.userVipLevel?:""}"
             tv_info.text = "${it?.userSex} ${it?.userAge}岁 | ${it?.userBirthDay} "
             tv_desc.text = it?.userDescribe?:"人生在世总要留点什么吧..."
         }

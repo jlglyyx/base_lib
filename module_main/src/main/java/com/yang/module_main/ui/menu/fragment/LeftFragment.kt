@@ -46,7 +46,7 @@ class LeftFragment : BaseFragment() {
             tv_account.text = it?.userAccount
             tv_location.text = it?.userLocationAddress
             tv_desc.text = it?.userDescribe?:"人生在世总要留点什么吧..."
-            tv_vip_level.text = "vip${it?.userVipLevel?:""}"
+            tv_vip_level.text = "VIP_${it?.userVipLevel?:""}"
         }
 
 

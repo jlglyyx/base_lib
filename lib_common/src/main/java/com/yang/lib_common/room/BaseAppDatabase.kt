@@ -1,5 +1,7 @@
 package com.yang.lib_common.room
 
+import android.os.Environment
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -46,20 +48,20 @@ abstract class BaseAppDatabase : RoomDatabase() {
             ).build()
         }
 
-        private fun createFile():String{
-            val file = File("${BaseApplication.baseApplication.cacheDir}/app_/db_")
-            if (!file.exists()){
-                file.mkdirs()
-            }
-            return file.path
-        }
 //        private fun createFile():String{
-//            val file = File("${Environment.getExternalStorageDirectory()}/MFiles/db")
+//            val file = File("${BaseApplication.baseApplication.cacheDir}/app_/db_")
 //            if (!file.exists()){
 //                file.mkdirs()
 //            }
 //            return file.path
 //        }
+        private fun createFile():String{
+            val file = File("${Environment.getExternalStorageDirectory()}/MFiles/db")
+            if (!file.exists()){
+                file.mkdirs()
+            }
+            return file.path
+        }
     }
 
 

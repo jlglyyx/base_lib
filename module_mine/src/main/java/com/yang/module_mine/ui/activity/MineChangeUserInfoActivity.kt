@@ -101,6 +101,7 @@ class MineChangeUserInfoActivity : BaseActivity() {
                     null,
                     null,
                     0,
+                    0,
                     false,
                     0,
                     null,

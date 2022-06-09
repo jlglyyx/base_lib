@@ -23,6 +23,7 @@ data class UserInfoData(
     var userPhone: String?,
     var userImage: String?,
     var userVipLevel: Int,
+    var userCredit: Int,
     var userVipExpired: Boolean,
     var userType: Int,
     var userObtain: String?,

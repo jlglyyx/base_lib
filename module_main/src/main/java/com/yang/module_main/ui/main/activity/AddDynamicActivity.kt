@@ -47,7 +47,9 @@ class AddDynamicActivity : BaseActivity() {
     private var mPayTaskDialog: PayTaskDialog? = null
 
     private var checkArray = arrayOf("是", "否")
-    private var selectCheck = "是"
+    private var selectCheck = 0
+
+    private val dynamicData = DynamicData()
 
 
     override fun getLayout(): Int {
@@ -67,7 +69,7 @@ class AddDynamicActivity : BaseActivity() {
             XPopup.Builder(this).asBottomList(
                 "", checkArray
             ) { position, text ->
-                selectCheck = text
+                selectCheck = position
                 icv_advance_payment.rightContent = text
             }.show()
         }
@@ -77,16 +79,7 @@ class AddDynamicActivity : BaseActivity() {
         ViewLayoutChangeUtil().add(findViewById(android.R.id.content))
     }
 
-    private fun addDynamic() {
-        val dynamicData = DynamicData()
-        dynamicData.userId = getUserInfo()?.id
-        dynamicData.imageUrls = mainViewModel.pictureListLiveData.value?.formatWithSymbol("#")
-        mainViewModel.addDynamic(dynamicData)
-    }
 
-    private fun uploadFile(data: MutableList<MediaInfoBean>) {
-        mainViewModel.uploadFile(data)
-    }
 
     override fun initUIChangeLiveData(): UIChangeLiveData {
         return mainViewModel.uC
@@ -195,6 +188,17 @@ class AddDynamicActivity : BaseActivity() {
             showShort("请输入商品佣金")
             return
         }
+        dynamicData.apply {
+            taskTitle = etTaskTitle
+            taskContent = etTaskContent
+            taskShop = etTaskShop
+            taskLink = etTaskLink
+            taskKeyword = etTaskKeyword
+            taskNumber = etTaskNumber.toInt()
+            taskPrice = etTaskPrice
+            taskCommission = etTaskCommission
+            taskPayUser = selectCheck
+        }
 
         if (null == mPayTaskDialog){
             mPayTaskDialog = PayTaskDialog(this@AddDynamicActivity)
@@ -213,5 +217,13 @@ class AddDynamicActivity : BaseActivity() {
 
     }
 
+    private fun addDynamic() {
+        dynamicData.userId = getUserInfo()?.id
+        dynamicData.imageUrls = mainViewModel.pictureListLiveData.value?.formatWithSymbol("#")
+        mainViewModel.addDynamic(dynamicData)
+    }
 
+    private fun uploadFile(data: MutableList<MediaInfoBean>) {
+        mainViewModel.uploadFile(data)
+    }
 }

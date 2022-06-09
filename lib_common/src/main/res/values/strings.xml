@@ -29,9 +29,9 @@
     <string name="string_change_password_success">修改密码成功!</string>
     <string name="string_change_password_fail">修改密码失败!</string>
 
-    <string name="string_insert_dynamic_ing">正在努力发表中…</string>
-    <string name="string_insert_dynamic_success">发表成功</string>
-    <string name="string_insert_dynamic_fail">发表失败</string>
+    <string name="string_insert_dynamic_ing">正在发布任务</string>
+    <string name="string_insert_dynamic_success">发布任务成功</string>
+    <string name="string_insert_dynamic_fail">发布任务失败</string>
 
     <string name="string_register_ing">正在注册…</string>
     <string name="string_register_success">注册成功!</string>

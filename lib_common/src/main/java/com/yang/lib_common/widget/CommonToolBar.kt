@@ -35,6 +35,8 @@ class CommonToolBar : ConstraintLayout {
 
     lateinit var ivSearch: ImageView
 
+    lateinit var ivAdd: ImageView
+
     private lateinit var tvRightContent: TextView
 
     var rightContentVisible: Boolean = false
@@ -81,7 +83,7 @@ class CommonToolBar : ConstraintLayout {
         val tvLeftContent = inflate.findViewById<TextView>(R.id.tv_leftContent)
         tvRightContent = inflate.findViewById(R.id.tv_rightContent)
         ivBack = inflate.findViewById(R.id.iv_back)
-        val ivAdd = inflate.findViewById<ImageView>(R.id.iv_add)
+        ivAdd = inflate.findViewById<ImageView>(R.id.iv_add)
         ivSearch = inflate.findViewById(R.id.iv_search)
         val obtainStyledAttributes =
             context.obtainStyledAttributes(attrs, R.styleable.CommonToolBar)

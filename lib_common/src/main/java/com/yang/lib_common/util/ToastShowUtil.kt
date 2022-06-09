@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
  *
  * @Date 2020/12/2 9:38
  */
-private var toast: Toast? = null
+var toast: Toast? = null
 private val context: Context = BaseApplication.baseApplication
 
 @SuppressLint("ShowToast")

@@ -85,7 +85,7 @@ class OpenVipActivity:BaseActivity() {
     private fun setMProgress(progress:Int){
         val mProgress = prb_vip.progress + progress
         if (mProgress >= prb_vip.max){
-            tv_level.text = "当前等级：vip${level++}"
+            tv_level.text = "当前等级：VIP_${level++}"
             prb_vip.progress = mProgress - prb_vip.max
             maxProgress = level*100
             prb_vip.max = maxProgress

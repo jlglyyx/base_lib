@@ -8,9 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
@@ -20,20 +18,18 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.ShapeAppearanceModel
-import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnSelectListener
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.yang.apt_annotation.annotain.InjectViewModel
-import com.yang.lib_common.adapter.TabAndViewPagerFragmentAdapter
 import com.yang.lib_common.base.ui.fragment.BaseLazyFragment
 import com.yang.lib_common.bus.event.LiveDataBus
 import com.yang.lib_common.bus.event.UIChangeLiveData
 import com.yang.lib_common.constant.AppConstant
 import com.yang.lib_common.dialog.FilterTaskDialog
 import com.yang.lib_common.dialog.ImageViewPagerDialog
-import com.yang.lib_common.dialog.SearchRecyclerViewDialog
 import com.yang.lib_common.proxy.InjectViewModelProxy
 import com.yang.lib_common.util.*
 import com.yang.lib_common.widget.CommonToolBar
@@ -49,16 +45,12 @@ import kotlinx.android.synthetic.main.fra_main.*
 import kotlinx.android.synthetic.main.fra_main.commonToolBar
 import kotlinx.android.synthetic.main.view_normal_recyclerview.*
 import kotlinx.android.synthetic.main.view_normal_recyclerview.recyclerView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.random.Random
 
 
 @Route(path = AppConstant.RoutePath.MAIN_FRAGMENT)
-class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
+class MainFragment : BaseLazyFragment(), OnRefreshLoadMoreListener {
 
     @Inject
     lateinit var gson: Gson
@@ -74,7 +66,7 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
 
     private var mTTAdNative: TTAdNative? = null
 
-    private var filterTaskDialog:FilterTaskDialog? = null
+    private var filterTaskDialog: FilterTaskDialog? = null
 
 
     override fun getLayout(): Int {
@@ -91,9 +83,9 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
         })
 
         mainViewModel.dynamicListLiveData.observe(this, Observer {
-            if (it.isNotEmpty() && mainViewModel.mTTNativeExpressAdList.isNotEmpty()){
+            if (it.isNotEmpty() && mainViewModel.mTTNativeExpressAdList.isNotEmpty()) {
                 mainViewModel.mTTNativeExpressAdList.forEach { adItem ->
-                    it.add(Random.nextInt(0,it.size),adItem)
+                    it.add(Random.nextInt(0, it.size), adItem)
                 }
             }
             when {
@@ -175,14 +167,6 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
 
         commonToolBar.imageAddCallBack = object : CommonToolBar.ImageAddCallBack {
             override fun imageAddClickListener() {
-                if (getDefaultMMKV().decodeInt(
-                        AppConstant.Constant.LOGIN_STATUS,
-                        -1
-                    ) == AppConstant.Constant.LOGIN_NO_PERMISSION
-                ) {
-                    buildARouterLogin(mContext)
-                    return
-                }
                 registerForActivityResult.launch(
                     Intent(requireContext(), AddDynamicActivity::class.java)
                 )
@@ -196,14 +180,14 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
 
         tv_search.clicks().subscribe {
             et_search.clearFocus()
-            hideSoftInput(requireContext(),tv_search)
-            if (TextUtils.isEmpty(tv_search.text.toString())){
+            hideSoftInput(requireContext(), tv_search)
+            if (TextUtils.isEmpty(tv_search.text.toString())) {
                 return@subscribe
             }
         }
 
         tv_filter.clicks().subscribe {
-            if (null == filterTaskDialog){
+            if (null == filterTaskDialog) {
                 filterTaskDialog = FilterTaskDialog(requireContext())
             }
             XPopup.Builder(requireContext()).asCustom(filterTaskDialog).show()
@@ -223,7 +207,6 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
     override fun initViewModel() {
         InjectViewModelProxy.inject(this)
     }
-
 
 
     private fun initRecyclerView() {
@@ -267,7 +250,7 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
                 AppConstant.Constant.ITEM_CONTENT -> {
                     initItemMainTitle(helper, item)
 
-                    if (item.content.isNullOrEmpty()) {
+                    if (item.taskContent.isNullOrEmpty()) {
                         helper.setGone(R.id.item_main_content_text, false)
                     } else {
                         helper.setGone(R.id.item_main_content_text, true)
@@ -316,8 +299,9 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
         private fun initItemMainTitle(helper: BaseViewHolder, item: DynamicData) {
             val sivImg = helper.getView<ShapeableImageView>(R.id.siv_img)
             helper.addOnClickListener(R.id.siv_img)
-            helper.setText(R.id.tv_time, item.createTime)
-            helper.setText(R.id.tv_name, item.userName)
+                .setText(R.id.tv_name, item.userName)
+                .setText(R.id.tv_vip_level, if(item.userVipLevel == 0)"" else "VIP_${item.userVipLevel}")
+                .setText(R.id.tv_credit, if(item.userCredit == 0) "信用一般" else "信用良好")
             Glide.with(sivImg).load(
                 item.userImage
                     ?: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F39%2Fb7%2F53%2F39b75357f98675e2d6d5dcde1fb805a3.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642840086&t=2a7574a5d8ecc96669ac3e050fe4fd8e"
@@ -327,11 +311,12 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
         }
 
         private fun initItemMainContentText(helper: BaseViewHolder, item: DynamicData) {
-            helper.setText(R.id.tv_text, item.content)
+            helper.setText(R.id.tv_text, item.taskContent)
+                .setText(R.id.tv_title, item.taskTitle)
+                .setText(R.id.tv_task_commission, "￥${item.taskCommission}")
         }
 
         private fun initItemMainContentImage(helper: BaseViewHolder, item: DynamicData) {
-
             val gridNinePictureView = helper.getView<GridNinePictureView>(R.id.gridNinePictureView)
             gridNinePictureView.data = item.imageUrls?.symbolToList("#")!!
             gridNinePictureView.imageCallback = object : GridNinePictureView.ImageCallback {
@@ -348,29 +333,10 @@ class MainFragment : BaseLazyFragment() , OnRefreshLoadMoreListener {
 
             }
         }
-//        private fun initItemMainContentImage(helper: BaseViewHolder, item: DynamicData) {
-//            val mRecyclerView = helper.getView<RecyclerView>(R.id.mRecyclerView)
-//            mRecyclerView.layoutManager = GridLayoutManager(mContext, 3)
-//            val dynamicAdapter = DynamicAdapter(
-//                R.layout.view_item_grid_nine_picture,
-//                item.imageUrls?.symbolToList("#")!!
-//            )
-//
-//            dynamicAdapter.setOnItemClickListener { adapter, view, position ->
-//                val imageViewPagerDialog =
-//                    ImageViewPagerDialog(
-//                        requireContext(),
-//                        item.imageUrls?.symbolToList("#")!!,
-//                        position,
-//                        true
-//                    )
-//                XPopup.Builder(requireContext()).asCustom(imageViewPagerDialog).show()
-//            }
-//            mRecyclerView.adapter = dynamicAdapter
-//        }
 
         private fun initItemMainIdentification(helper: BaseViewHolder, item: DynamicData) {
-
+            helper.setText(R.id.tv_task_progress, "总单量：${item.taskNumber}  剩余：${item.taskNumber-item.taskNumbering-item.taskNumbered}")
+                .setText(R.id.tv_task_status, "${item.taskType}-${item.taskStatus}")
         }
     }
 
