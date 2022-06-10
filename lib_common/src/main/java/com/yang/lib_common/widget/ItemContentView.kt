@@ -96,7 +96,7 @@ class ItemContentView:LinearLayout {
         if (rightImgVisible) {
             ivRight.visibility = View.VISIBLE
         } else {
-            ivRight.visibility = View.GONE
+            ivRight.visibility = View.INVISIBLE
         }
         if (rightImgSrc != 0){
             ivRight.setImageResource(rightImgSrc)

@@ -22,7 +22,7 @@
         android:paddingVertical="@dimen/dp_18"
         android:maxLength="7"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_15" />
+        android:textSize="@dimen/sp_16" />
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/tv_rightContent"
@@ -34,7 +34,7 @@
         android:maxLines="1"
         android:maxLength="8"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_13" />
+        android:textSize="@dimen/sp_15" />
     <ImageView
         android:id="@+id/iv_right"
         android:layout_width="@dimen/dp_30"
